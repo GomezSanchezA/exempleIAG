@@ -1,0 +1,1407 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Estandardització EDTA 0,1 M — Guia Interactiva</title>
+<script>
+window.MathJax = {
+  tex: { inlineMath: [['$','$']], displayMath: [['$$','$$']], packages: {'[+]': ['mhchem']} },
+  loader: { load: ['[tex]/mhchem'] },
+  startup: { typeset: true }
+};
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" async></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #f0f2f5;
+  --card: #ffffff;
+  --text: #1a1d23;
+  --muted: #6b7280;
+  --accent: #0d6b5e;
+  --accent-light: #e6f5f2;
+  --accent-dark: #064e3b;
+  --accent-glow: #10b98140;
+  --border: #e2e5ea;
+  --danger: #c0392b;
+  --danger-light: #fdf0ef;
+  --warning: #c87f0a;
+  --warning-light: #fef9eb;
+  --success: #0e8a6d;
+  --success-light: #eafaf4;
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.04), 0 1px 2px rgba(0,0,0,0.06);
+  --shadow-md: 0 4px 12px rgba(0,0,0,0.06), 0 1px 3px rgba(0,0,0,0.08);
+  --shadow-lg: 0 12px 28px rgba(0,0,0,0.08), 0 4px 10px rgba(0,0,0,0.04);
+  --radius: 14px;
+  --radius-sm: 10px;
+  --font: 'DM Sans', system-ui, -apple-system, sans-serif;
+  --mono: 'JetBrains Mono', 'Consolas', monospace;
+}
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--font);
+  background: var(--bg); color: var(--text); line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ─── HERO ─── */
+.hero {
+  background: linear-gradient(145deg, #042f2e 0%, #064e3b 35%, #0d6b5e 70%, #0f8c7a 100%);
+  color: white; padding: 2.8rem 1.5rem 2.6rem;
+  position: relative; overflow: hidden;
+}
+.hero::before {
+  content: ''; position: absolute; top: -50%; right: -20%;
+  width: 500px; height: 500px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(16,185,129,0.15) 0%, transparent 70%);
+  pointer-events: none;
+}
+.hero::after {
+  content: ''; position: absolute; inset: 0;
+  background: url("data:image/svg+xml,%3Csvg width='40' height='40' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='1' cy='1' r='1' fill='%23fff' fill-opacity='.06'/%3E%3C/svg%3E");
+  pointer-events: none;
+}
+.hero-content { max-width: 900px; margin: 0 auto; position: relative; z-index: 1; }
+.hero h1 {
+  font-size: 1.9rem; font-weight: 700; margin-bottom: 0.35rem;
+  letter-spacing: -0.03em; line-height: 1.2;
+}
+.hero .subtitle { font-size: 0.92rem; opacity: 0.85; margin-bottom: 1.2rem; font-weight: 400; }
+.hero-meta { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.hero-badge {
+  display: inline-flex; align-items: center; gap: 0.35rem;
+  background: rgba(255,255,255,0.12); backdrop-filter: blur(8px);
+  padding: 0.32rem 0.72rem; border-radius: 999px;
+  font-size: 0.78rem; font-weight: 500; border: 1px solid rgba(255,255,255,0.15);
+  transition: background 0.2s;
+}
+.hero-badge:hover { background: rgba(255,255,255,0.2); }
+.hero-badge svg { width: 14px; height: 14px; opacity: 0.9; }
+
+/* ─── NAV ─── */
+.main-wrap { max-width: 960px; margin: 0 auto; padding: 0 0.75rem; }
+.tab-bar {
+  display: flex; background: var(--card); border-radius: var(--radius);
+  box-shadow: var(--shadow-md); margin: -1.5rem auto 1.5rem;
+  position: relative; z-index: 2; overflow-x: auto;
+  -webkit-overflow-scrolling: touch; scrollbar-width: none;
+}
+.tab-bar::-webkit-scrollbar { display: none; }
+.tab-btn {
+  flex: 1; min-width: 80px; padding: 0.75rem 0.4rem; border: none; background: transparent;
+  font-family: var(--font); font-size: 0.72rem; font-weight: 600; color: var(--muted);
+  cursor: pointer; transition: all 0.2s ease; display: flex; flex-direction: column;
+  align-items: center; gap: 0.25rem; border-bottom: 3px solid transparent;
+  white-space: nowrap; position: relative;
+}
+.tab-btn:hover { color: var(--accent); background: var(--accent-light); }
+.tab-btn.active {
+  color: var(--accent); border-bottom-color: var(--accent);
+  background: var(--accent-light);
+}
+.tab-btn svg { width: 18px; height: 18px; }
+.tab-btn .tab-label { display: block; }
+.tab-panel { display: none; animation: fadeIn 0.35s ease; }
+.tab-panel.active { display: block; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+
+/* ─── CARDS ─── */
+.card {
+  background: var(--card); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 1.4rem;
+  margin-bottom: 1.25rem; box-shadow: var(--shadow-sm);
+  overflow: hidden;
+}
+.card-title {
+  font-size: 1.1rem; font-weight: 700; margin-bottom: 0.9rem;
+  display: flex; align-items: center; gap: 0.55rem;
+}
+.card-title svg { width: 20px; height: 20px; color: var(--accent); flex-shrink: 0; }
+
+/* ─── INFO GRID ─── */
+.info-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 0.7rem; margin-bottom: 1.25rem;
+}
+.info-item {
+  padding: 0.85rem; background: #f8fafb; border-radius: var(--radius-sm);
+  border-left: 4px solid var(--accent); transition: transform 0.15s, box-shadow 0.15s;
+}
+.info-item:hover { transform: translateY(-1px); box-shadow: var(--shadow-sm); }
+.info-item .label {
+  font-size: 0.68rem; font-weight: 600; text-transform: uppercase;
+  letter-spacing: 0.06em; color: var(--muted); margin-bottom: 0.2rem;
+}
+.info-item .value { font-size: 0.88rem; font-weight: 600; }
+
+/* ─── STEPS ─── */
+.step-nav {
+  display: flex; gap: 0.2rem; margin-bottom: 1.25rem;
+  overflow-x: auto; padding-bottom: 0.4rem;
+  scrollbar-width: none;
+}
+.step-nav::-webkit-scrollbar { display: none; }
+.step-dot {
+  width: 34px; height: 34px; border-radius: 50%; border: 2px solid var(--border);
+  background: var(--card); display: flex; align-items: center; justify-content: center;
+  font-size: 0.75rem; font-weight: 700; cursor: pointer; transition: all 0.2s;
+  flex-shrink: 0; color: var(--muted);
+}
+.step-dot:hover { border-color: var(--accent); color: var(--accent); }
+.step-dot.active { border-color: var(--accent); background: var(--accent); color: white; box-shadow: 0 0 0 3px var(--accent-glow); }
+.step-dot.done { border-color: var(--success); background: var(--success-light); color: var(--success); }
+.step-connector { flex: 1; min-width: 6px; max-width: 28px; height: 2px; background: var(--border); align-self: center; }
+.step-connector.done { background: var(--success); }
+.step-content { display: none; animation: fadeIn 0.3s ease; }
+.step-content.active { display: block; }
+.step-header { display: flex; align-items: center; gap: 0.6rem; margin-bottom: 0.85rem; }
+.step-number {
+  width: 38px; height: 38px; background: var(--accent); color: white;
+  border-radius: 50%; display: flex; align-items: center; justify-content: center;
+  font-weight: 800; font-size: 1rem; flex-shrink: 0;
+}
+.step-title { font-size: 1.05rem; font-weight: 700; }
+.step-body { font-size: 0.88rem; }
+.step-body p { margin-bottom: 0.6rem; }
+.step-body ul, .step-body ol { margin: 0.4rem 0 0.8rem 1.15rem; }
+.step-body li { margin-bottom: 0.3rem; }
+.step-buttons { display: flex; gap: 0.6rem; margin-top: 1rem; }
+.step-illust {
+  display: flex; justify-content: center; margin: 0.85rem 0;
+  padding: 0.75rem; background: #f8fafb; border-radius: var(--radius-sm);
+  border: 1px dashed var(--border);
+}
+.step-illust svg { max-width: 100%; height: auto; }
+
+.btn {
+  display: inline-flex; align-items: center; gap: 0.35rem;
+  padding: 0.55rem 1.1rem; border-radius: var(--radius-sm); border: none;
+  font-family: var(--font); font-size: 0.84rem; font-weight: 600;
+  cursor: pointer; transition: all 0.15s;
+}
+.btn-primary { background: var(--accent); color: white; }
+.btn-primary:hover { background: var(--accent-dark); transform: translateY(-1px); }
+.btn-secondary { background: #f1f3f5; color: var(--text); }
+.btn-secondary:hover { background: #e5e7eb; }
+.btn svg { width: 15px; height: 15px; }
+
+/* ─── ALERTS ─── */
+.alert {
+  padding: 0.75rem 0.9rem; border-radius: var(--radius-sm); font-size: 0.84rem;
+  margin: 0.6rem 0; display: flex; gap: 0.5rem; align-items: flex-start;
+}
+.alert svg { width: 17px; height: 17px; flex-shrink: 0; margin-top: 2px; }
+.alert-danger { background: var(--danger-light); border: 1px solid #f5c6c0; color: #7a1f15; }
+.alert-warning { background: var(--warning-light); border: 1px solid #f5dfa0; color: #7a5a08; }
+.alert-success { background: var(--success-light); border: 1px solid #a7e8d4; color: #065f46; }
+.alert-info { background: #eef4ff; border: 1px solid #b8d4fe; color: #1a3a6b; }
+
+/* ─── SIMULATOR ─── */
+.sim-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; align-items: start; }
+.sim-controls { display: flex; flex-direction: column; gap: 0.85rem; }
+.sim-volume-display {
+  font-size: 2rem; font-weight: 700; color: var(--accent); text-align: center;
+  font-family: var(--mono); letter-spacing: -0.02em;
+}
+.sim-volume-display small { font-size: 0.8rem; font-weight: 500; color: var(--muted); font-family: var(--font); }
+.sim-slider-row { display: flex; align-items: center; gap: 0.6rem; }
+.sim-slider-group { flex: 1; text-align: center; }
+.sim-slider-group label { display: block; font-weight: 600; margin-bottom: 0.4rem; font-size: 0.82rem; }
+.sim-slider {
+  width: 100%; -webkit-appearance: none; appearance: none;
+  height: 6px; border-radius: 3px;
+  background: linear-gradient(to right, var(--accent) 0%, var(--accent) var(--pct, 0%), var(--border) var(--pct, 0%), var(--border) 100%);
+  outline: none; transition: opacity 0.2s;
+}
+.sim-slider::-webkit-slider-thumb {
+  -webkit-appearance: none; width: 22px; height: 22px; border-radius: 50%;
+  background: var(--accent); border: 3px solid white; box-shadow: var(--shadow-md);
+  cursor: pointer; transition: transform 0.15s;
+}
+.sim-slider::-webkit-slider-thumb:hover { transform: scale(1.15); }
+.sim-slider::-moz-range-thumb {
+  width: 22px; height: 22px; border-radius: 50%;
+  background: var(--accent); border: 3px solid white; box-shadow: var(--shadow-md); cursor: pointer;
+}
+.sim-slider-ticks {
+  display: flex; justify-content: space-between;
+  font-size: 0.68rem; color: var(--muted); margin-top: 0.25rem;
+}
+
+/* Play button */
+.play-btn {
+  width: 42px; height: 42px; border-radius: 50%; border: 2px solid var(--accent);
+  background: var(--accent-light); color: var(--accent); cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  transition: all 0.2s; flex-shrink: 0; position: relative;
+}
+.play-btn:hover { background: var(--accent); color: white; transform: scale(1.08); }
+.play-btn.playing { background: var(--accent); color: white; animation: pulseBtn 1.5s ease infinite; }
+.play-btn svg { width: 18px; height: 18px; }
+@keyframes pulseBtn {
+  0%, 100% { box-shadow: 0 0 0 0 var(--accent-glow); }
+  50% { box-shadow: 0 0 0 8px transparent; }
+}
+.speed-label {
+  font-size: 0.68rem; color: var(--muted); text-align: center;
+  margin-top: 0.15rem; font-weight: 500; white-space: nowrap;
+}
+
+.sim-apparatus { display: flex; flex-direction: column; align-items: center; }
+.sim-color-label {
+  text-align: center; font-weight: 700; font-size: 0.88rem;
+  padding: 0.5rem 0.75rem; border-radius: var(--radius-sm); margin-top: 0.5rem;
+  transition: all 0.3s ease;
+}
+
+.sim-info-panel {
+  background: #f8fafb; border-radius: var(--radius-sm);
+  padding: 0.9rem; font-size: 0.82rem; border: 1px solid var(--border);
+}
+.sim-info-panel h4 { font-size: 0.88rem; margin-bottom: 0.35rem; font-weight: 700; }
+.sim-info-panel p { margin-bottom: 0.3rem; }
+
+.curve-container {
+  position: relative; background: white; border-radius: var(--radius-sm);
+  padding: 0.75rem; border: 1px solid var(--border); box-shadow: var(--shadow-sm);
+}
+.curve-container canvas { width: 100%; height: 280px; display: block; }
+.curve-legend { display: flex; gap: 0.85rem; justify-content: center; margin-top: 0.6rem; font-size: 0.72rem; flex-wrap: wrap; }
+.curve-legend-item { display: flex; align-items: center; gap: 0.3rem; }
+.curve-legend-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+
+/* Drop animation */
+@keyframes dropFall {
+  0% { transform: translateY(0); opacity: 1; }
+  80% { opacity: 1; }
+  100% { transform: translateY(55px); opacity: 0; }
+}
+.drop-falling { animation: dropFall 0.6s ease-in infinite; }
+
+/* ─── CHECKLIST ─── */
+.checklist-item {
+  display: flex; gap: 0.6rem; padding: 0.75rem 0.9rem; border-radius: var(--radius-sm);
+  margin-bottom: 0.4rem; cursor: pointer; transition: all 0.15s;
+  align-items: flex-start; border: 1px solid transparent;
+  -webkit-tap-highlight-color: transparent;
+}
+.checklist-item:hover { background: #f8fafb; }
+.checklist-item:active { transform: scale(0.99); }
+.checklist-item.checked { background: var(--success-light); border-color: #a7e8d4; }
+.check-box {
+  width: 22px; height: 22px; border: 2px solid var(--border); border-radius: 6px;
+  flex-shrink: 0; display: flex; align-items: center; justify-content: center;
+  transition: all 0.2s; margin-top: 0px;
+}
+.checklist-item.checked .check-box { background: var(--success); border-color: var(--success); }
+.check-icon { display: none; }
+.checklist-item.checked .check-icon { display: block; }
+
+/* ─── TABLE ─── */
+.errors-table { width: 100%; border-collapse: separate; border-spacing: 0; font-size: 0.82rem; }
+.errors-table th {
+  background: #f0f3f6; padding: 0.6rem 0.75rem; text-align: left;
+  font-weight: 700; border-bottom: 2px solid var(--border);
+}
+.errors-table th:first-child { border-radius: var(--radius-sm) 0 0 0; }
+.errors-table th:last-child { border-radius: 0 var(--radius-sm) 0 0; }
+.errors-table td { padding: 0.6rem 0.75rem; border-bottom: 1px solid var(--border); vertical-align: top; }
+.errors-table tr:last-child td { border-bottom: none; }
+.errors-table tr:hover td { background: #f8fafb; }
+
+/* Mobile stacked errors */
+.error-cards { display: none; }
+.error-card {
+  background: #f8fafb; border: 1px solid var(--border); border-radius: var(--radius-sm);
+  padding: 0.85rem; margin-bottom: 0.6rem;
+}
+.error-card-header { font-weight: 700; font-size: 0.85rem; margin-bottom: 0.45rem; color: var(--danger); }
+.error-card-row { display: flex; gap: 0.3rem; font-size: 0.8rem; margin-bottom: 0.25rem; }
+.error-card-label { font-weight: 600; color: var(--muted); min-width: 80px; flex-shrink: 0; }
+
+/* ─── REACTION / CALC BLOCKS ─── */
+.reaction-block {
+  background: #f8fafc; border: 1px solid var(--border); border-radius: var(--radius-sm);
+  padding: 1rem; margin: 0.7rem 0; text-align: center; overflow-x: auto;
+}
+.reaction-block .reaction-label {
+  font-size: 0.72rem; font-weight: 600; color: var(--muted);
+  text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.4rem;
+}
+.calc-step {
+  background: #f8fafc; border-left: 4px solid var(--accent);
+  padding: 0.85rem 1rem; border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  margin: 0.7rem 0; overflow-x: auto;
+}
+.calc-step .calc-label {
+  font-size: 0.75rem; font-weight: 700; color: var(--accent);
+  text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.3rem;
+}
+
+/* ─── COLORS ─── */
+.color-swatch-row { display: flex; gap: 0.6rem; flex-wrap: wrap; margin: 0.75rem 0; align-items: center; justify-content: center; }
+.color-swatch { display: flex; flex-direction: column; align-items: center; gap: 0.3rem; }
+.color-circle { width: 48px; height: 48px; border-radius: 50%; border: 3px solid white; box-shadow: var(--shadow-md); }
+.color-swatch span { font-size: 0.72rem; font-weight: 600; text-align: center; max-width: 75px; }
+
+/* ─── MISC ─── */
+.math-display { overflow-x: auto; }
+.mt-1 { margin-top: 0.5rem; } .mt-2 { margin-top: 1rem; }
+.mb-1 { margin-bottom: 0.5rem; } .mb-2 { margin-bottom: 1rem; }
+strong { font-weight: 700; }
+.text-muted { color: var(--muted); } .text-sm { font-size: 0.82rem; }
+.progress-bar { height: 4px; background: var(--border); border-radius: 2px; margin-bottom: 0.85rem; overflow: hidden; }
+.progress-fill { height: 100%; background: var(--accent); border-radius: 2px; transition: width 0.3s; }
+
+/* MathJax overflow */
+mjx-container { overflow-x: auto !important; max-width: 100% !important; }
+
+/* ─── MOBILE ─── */
+@media (max-width: 700px) {
+  .hero { padding: 1.8rem 1rem 1.6rem; }
+  .hero h1 { font-size: 1.3rem; }
+  .hero .subtitle { font-size: 0.82rem; margin-bottom: 0.9rem; }
+  .hero-badge { font-size: 0.72rem; padding: 0.28rem 0.55rem; }
+  .main-wrap { padding: 0 0.4rem; }
+
+  .tab-btn { min-width: 62px; padding: 0.6rem 0.25rem; font-size: 0.65rem; }
+  .tab-btn svg { width: 16px; height: 16px; }
+
+  .card { padding: 0.9rem; margin-bottom: 1rem; }
+  .card-title { font-size: 0.95rem; gap: 0.4rem; margin-bottom: 0.7rem; }
+  .card-title svg { width: 18px; height: 18px; }
+
+  .info-grid { grid-template-columns: 1fr; gap: 0.5rem; }
+  .info-item { padding: 0.7rem; }
+  .info-item .label { font-size: 0.65rem; }
+  .info-item .value { font-size: 0.82rem; }
+
+  .sim-layout { grid-template-columns: 1fr; }
+  .sim-volume-display { font-size: 1.6rem; }
+  .sim-apparatus svg { max-width: 200px; height: auto; }
+  .curve-container canvas { height: 220px; }
+  .curve-legend { font-size: 0.65rem; gap: 0.5rem; }
+
+  .step-dot { width: 30px; height: 30px; font-size: 0.7rem; }
+  .step-number { width: 32px; height: 32px; font-size: 0.9rem; }
+  .step-title { font-size: 0.92rem; }
+  .step-body { font-size: 0.84rem; }
+  .step-illust { padding: 0.5rem; }
+  .step-illust svg { max-height: 90px; }
+
+  .color-circle { width: 38px; height: 38px; border-width: 2px; }
+  .color-swatch span { font-size: 0.66rem; }
+  .color-swatch-row { gap: 0.35rem; }
+
+  .reaction-block { padding: 0.7rem 0.5rem; }
+  .calc-step { padding: 0.7rem 0.8rem; }
+
+  .alert { font-size: 0.8rem; padding: 0.65rem 0.75rem; }
+  .btn { font-size: 0.8rem; padding: 0.5rem 0.9rem; }
+
+  .checklist-item { padding: 0.7rem; font-size: 0.84rem; }
+  .check-box { width: 24px; height: 24px; }
+
+  /* Stacked error cards on mobile */
+  .errors-table-wrap { display: none; }
+  .error-cards { display: block; }
+
+  .play-btn { width: 38px; height: 38px; }
+  .play-btn svg { width: 16px; height: 16px; }
+}
+
+@media (max-width: 400px) {
+  .tab-btn .tab-label { display: none; }
+  .tab-btn { min-width: 48px; gap: 0; }
+  .hero h1 { font-size: 1.15rem; }
+  .hero .subtitle { font-size: 0.78rem; }
+  .hero-meta { gap: 0.35rem; }
+  .sim-apparatus svg { max-width: 160px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ═══ HERO ═══ -->
+<header class="hero">
+  <div class="hero-content">
+    <h1>Estandardització d'EDTA 0,1 mol/L</h1>
+    <p class="subtitle">Volumetria de complexació directa &mdash; Patró primari: Zn metàl·lic &mdash; Indicador: NET</p>
+    <div class="hero-meta">
+      <span class="hero-badge">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 8v4l3 3"/><circle cx="12" cy="12" r="9"/></svg>
+        2 &ndash; 2,5 h
+      </span>
+      <span class="hero-badge">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="9"/></svg>
+        Dificultat: Fàcil
+      </span>
+      <span class="hero-badge">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg>
+        Dilluns &mdash; QP2
+      </span>
+      <span class="hero-badge">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+        Bureta 25 mL
+      </span>
+    </div>
+  </div>
+</header>
+
+<div class="main-wrap">
+
+<!-- ═══ TAB BAR ═══ -->
+<nav class="tab-bar" role="tablist">
+  <button class="tab-btn active" data-tab="overview" role="tab">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+    <span class="tab-label">Resum</span>
+  </button>
+  <button class="tab-btn" data-tab="procedure" role="tab">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg>
+    <span class="tab-label">Procediment</span>
+  </button>
+  <button class="tab-btn" data-tab="simulator" role="tab">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 2v7.527a2 2 0 01-.211.896L4.72 20.55a1 1 0 00.9 1.45h12.76a1 1 0 00.9-1.45l-5.069-10.127A2 2 0 0114 9.527V2"/><path d="M8.5 2h7"/></svg>
+    <span class="tab-label">Simulador</span>
+  </button>
+  <button class="tab-btn" data-tab="calculations" role="tab">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M8 6h8M8 10h8M8 14h5"/></svg>
+    <span class="tab-label">Càlculs</span>
+  </button>
+  <button class="tab-btn" data-tab="checklist" role="tab">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
+    <span class="tab-label">Checklist</span>
+  </button>
+</nav>
+
+<!-- ═══ OVERVIEW ═══ -->
+<section class="tab-panel active" id="panel-overview">
+  <div class="info-grid">
+    <div class="info-item"><div class="label">Tipus de volumetria</div><div class="value">Complexació directa</div></div>
+    <div class="info-item"><div class="label">Valorant (bureta)</div><div class="value">EDTA ~0,1 mol/L</div></div>
+    <div class="info-item"><div class="label">Patró primari</div><div class="value">Zn metàl·lic (M = 65,38 g/mol)</div></div>
+    <div class="info-item"><div class="label">Indicador</div><div class="value">NET (Negre d'Eriocromo T)</div></div>
+    <div class="info-item"><div class="label">Tampó</div><div class="value">pH 10 (NH&#8323;/NH&#8324;Cl), 10 mL</div></div>
+    <div class="info-item"><div class="label">Viratge</div><div class="value">Roig vi &rarr; violeta &rarr; blau pur</div></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16v16H4z"/><path d="M9 9h6M9 13h6M9 17h3"/></svg>
+      Reaccions
+    </div>
+    <div class="reaction-block">
+      <div class="reaction-label">1. Dissolució del zinc</div>
+      $$\text{Zn(s)} + 2\text{HCl(aq)} \rightarrow \text{ZnCl}_2\text{(aq)} + \text{H}_2\text{(g)} \uparrow$$
+    </div>
+    <div class="reaction-block">
+      <div class="reaction-label">2. Neutralització de l'excés d'àcid</div>
+      $$\text{Zn}^{2+}\text{(aq)} + 2\text{OH}^{-}\text{(aq)} \rightarrow \text{Zn(OH)}_2\text{(s)} \downarrow \;\text{(terbolesa blanca)}$$
+    </div>
+    <div class="reaction-block">
+      <div class="reaction-label">3. Redissolució del precipitat</div>
+      $$\text{Zn(OH)}_2\text{(s)} + \text{H}_2\text{SO}_4\text{(aq)} \rightarrow \text{ZnSO}_4\text{(aq)} + 2\text{H}_2\text{O}$$
+    </div>
+    <div class="reaction-block">
+      <div class="reaction-label">4. Valoració (reacció principal)</div>
+      $$\text{Zn}^{2+}\text{(aq)} + \text{Y}^{4-}\text{(aq)} \rightarrow \text{ZnY}^{2-}\text{(aq)} \quad (1{:}1)$$
+    </div>
+    <div class="alert alert-info mt-1">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+      <div><strong>Estequiometria 1:1 sempre.</strong> L'EDTA és hexadentat (4 carboxils + 2 nitrogens) i envolta un únic ió metàl·lic com una gàbia, independentment de la càrrega del metall.</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 2a7 7 0 017 7c0 5-7 13-7 13S5 14 5 9a7 7 0 017-7z"/></svg>
+      Colors de l'indicador NET a pH 10
+    </div>
+    <div class="color-swatch-row">
+      <div class="color-swatch"><div class="color-circle" style="background:#881337"></div><span>Roig vi</span><span class="text-muted text-sm">Zn<sup>2+</sup> lliure</span></div>
+      <div style="font-size:1.2rem;color:var(--muted);">&rarr;</div>
+      <div class="color-swatch"><div class="color-circle" style="background:#6d28d9"></div><span>Violeta</span><span class="text-muted text-sm">Prop del PE</span></div>
+      <div style="font-size:1.2rem;color:var(--muted);">&rarr;</div>
+      <div class="color-swatch"><div class="color-circle" style="background:#2563eb"></div><span>Blau pur</span><span class="text-muted text-sm">Punt final</span></div>
+    </div>
+    <div class="alert alert-warning mt-1">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><path d="M12 9v4M12 17h.01"/></svg>
+      <div><strong>El violeta NO és el punt final.</strong> És barreja de roig + blau = encara queda Zn<sup>2+</sup> sense complexar. El punt final real és <strong>blau pur persistent &ge; 30 segons</strong>.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ PROCEDURE ═══ -->
+<section class="tab-panel" id="panel-procedure">
+  <div class="card">
+    <div class="card-title">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20V10M6 20V4M18 20v-6"/></svg>
+      Procediment pas a pas
+    </div>
+    <div class="progress-bar"><div class="progress-fill" id="stepProgress" style="width:12.5%"></div></div>
+    <div class="step-nav" id="stepNav"></div>
+    <div class="steps-container" id="stepsContainer"></div>
+  </div>
+</section>
+
+<!-- ═══ SIMULATOR ═══ -->
+<section class="tab-panel" id="panel-simulator">
+  <div class="card">
+    <div class="card-title">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 2v7.527a2 2 0 01-.211.896L4.72 20.55a1 1 0 00.9 1.45h12.76a1 1 0 00.9-1.45l-5.069-10.127A2 2 0 0114 9.527V2"/><path d="M8.5 2h7"/></svg>
+      Simulador de valoració
+    </div>
+    <div class="sim-layout">
+      <div class="sim-controls">
+        <div class="sim-volume-display"><span id="simVolume">0,00</span> <small>mL EDTA</small></div>
+        <div class="sim-slider-row">
+          <div class="sim-slider-group">
+            <label>Volum afegit d'EDTA</label>
+            <input type="range" class="sim-slider" id="simSlider" min="0" max="2500" value="0" step="1">
+            <div class="sim-slider-ticks">
+              <span>0 mL</span><span>V<sub>eq</sub> &asymp; 20 mL</span><span>25 mL</span>
+            </div>
+          </div>
+          <div style="display:flex;flex-direction:column;align-items:center;">
+            <button class="play-btn" id="playBtn" title="Reproduir valoració">
+              <svg id="playIcon" viewBox="0 0 24 24" fill="currentColor"><polygon points="6,3 20,12 6,21"/></svg>
+              <svg id="pauseIcon" viewBox="0 0 24 24" fill="currentColor" style="display:none"><rect x="5" y="3" width="4" height="18"/><rect x="15" y="3" width="4" height="18"/></svg>
+            </button>
+            <div class="speed-label" id="speedLabel">&#9654; Play</div>
+          </div>
+        </div>
+
+        <!-- Apparatus drawing -->
+        <div class="sim-apparatus">
+          <svg width="220" height="320" viewBox="0 0 220 320">
+            <defs>
+              <linearGradient id="glassGrad" x1="0" y1="0" x2="1" y2="0">
+                <stop offset="0%" stop-color="#d4d8de"/>
+                <stop offset="30%" stop-color="#eef0f3"/>
+                <stop offset="70%" stop-color="#eef0f3"/>
+                <stop offset="100%" stop-color="#d4d8de"/>
+              </linearGradient>
+              <linearGradient id="liquidGrad" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#0d6b5e" stop-opacity="0.75"/>
+                <stop offset="100%" stop-color="#0d6b5e" stop-opacity="0.92"/>
+              </linearGradient>
+              <linearGradient id="erlLiquidGrad" x1="0" y1="0" x2="0" y2="1">
+                <stop id="erlLiqStop1" offset="0%" stop-color="#881337" stop-opacity="0.45"/>
+                <stop id="erlLiqStop2" offset="100%" stop-color="#881337" stop-opacity="0.75"/>
+              </linearGradient>
+              <linearGradient id="standGrad" x1="0" y1="0" x2="1" y2="0">
+                <stop offset="0%" stop-color="#78716c"/>
+                <stop offset="50%" stop-color="#a8a29e"/>
+                <stop offset="100%" stop-color="#78716c"/>
+              </linearGradient>
+              <!-- erlClip removed: liquid now uses a proper interior path -->
+              <filter id="glassShadow"><feDropShadow dx="0" dy="1" stdDeviation="1.5" flood-opacity="0.1"/></filter>
+            </defs>
+
+            <!-- Retort stand -->
+            <rect x="18" y="10" width="6" height="300" rx="3" fill="url(#standGrad)"/>
+            <rect x="10" y="300" width="80" height="8" rx="3" fill="url(#standGrad)"/>
+            <!-- Clamp arm -->
+            <rect x="24" y="30" width="72" height="5" rx="2" fill="#a8a29e"/>
+            <circle cx="24" cy="32" r="5" fill="#78716c" stroke="#57534e" stroke-width="1"/>
+            <!-- Clamp jaws -->
+            <path d="M90,25 Q96,25 96,32 Q96,39 90,39" fill="none" stroke="#78716c" stroke-width="2.5" stroke-linecap="round"/>
+            <path d="M104,25 Q98,25 98,32 Q98,39 104,39" fill="none" stroke="#78716c" stroke-width="2.5" stroke-linecap="round"/>
+
+            <!-- Burette body -->
+            <rect x="97" y="18" width="14" height="6" rx="2" fill="#d4d8de"/>
+            <rect x="100" y="24" width="8" height="120" fill="url(#glassGrad)" stroke="#b0b8c4" stroke-width="1.2" rx="1" filter="url(#glassShadow)"/>
+
+            <!-- Burette liquid -->
+            <rect id="buretteLevel" x="101" y="24" width="6" height="120" fill="url(#liquidGrad)" rx="0.5"/>
+            <line id="buretteMeniscus" x1="101" y1="24" x2="107" y2="24" stroke="#0a5c50" stroke-width="1.2" opacity="0.85"/>
+
+            <!-- Graduation marks -->
+            <line x1="108" y1="24" x2="113" y2="24" stroke="#9ca3af" stroke-width="0.7"/>
+            <text x="116" y="27" font-size="6" fill="#9ca3af" font-family="DM Sans, sans-serif">0</text>
+            <line x1="108" y1="48" x2="112" y2="48" stroke="#9ca3af" stroke-width="0.5"/>
+            <text x="114" y="51" font-size="5.5" fill="#b0b8c4" font-family="DM Sans, sans-serif">5</text>
+            <line x1="108" y1="72" x2="113" y2="72" stroke="#9ca3af" stroke-width="0.7"/>
+            <text x="116" y="75" font-size="6" fill="#9ca3af" font-family="DM Sans, sans-serif">10</text>
+            <line x1="108" y1="96" x2="112" y2="96" stroke="#9ca3af" stroke-width="0.5"/>
+            <text x="114" y="99" font-size="5.5" fill="#b0b8c4" font-family="DM Sans, sans-serif">15</text>
+            <line x1="108" y1="120" x2="113" y2="120" stroke="#9ca3af" stroke-width="0.7"/>
+            <text x="116" y="123" font-size="6" fill="#9ca3af" font-family="DM Sans, sans-serif">20</text>
+            <line x1="108" y1="144" x2="113" y2="144" stroke="#9ca3af" stroke-width="0.7"/>
+            <text x="116" y="147" font-size="6" fill="#9ca3af" font-family="DM Sans, sans-serif">25</text>
+            <!-- Minor ticks -->
+            <line x1="108" y1="28.8" x2="111" y2="28.8" stroke="#d1d5db" stroke-width="0.4"/>
+            <line x1="108" y1="33.6" x2="111" y2="33.6" stroke="#d1d5db" stroke-width="0.4"/>
+            <line x1="108" y1="38.4" x2="111" y2="38.4" stroke="#d1d5db" stroke-width="0.4"/>
+            <line x1="108" y1="43.2" x2="111" y2="43.2" stroke="#d1d5db" stroke-width="0.4"/>
+
+            <!-- Stopcock -->
+            <rect x="101" y="144" width="6" height="12" fill="#d4d8de" rx="1"/>
+            <circle cx="104" cy="150" r="5.5" fill="none" stroke="#9ca3af" stroke-width="1.5"/>
+            <rect x="109" y="147" width="10" height="6" rx="2" fill="#e7e5e4" stroke="#a8a29e" stroke-width="0.8"/>
+
+            <!-- Drip tip -->
+            <line x1="104" y1="156" x2="104" y2="175" stroke="#b0b8c4" stroke-width="1.5" stroke-linecap="round"/>
+
+            <!-- Drops -->
+            <g id="dropAnim" opacity="0">
+              <ellipse cx="104" cy="182" rx="2.5" ry="4" fill="#0d6b5e" opacity="0.8"/>
+            </g>
+
+            <!-- White paper under erlenmeyer -->
+            <rect x="32" y="296" width="156" height="16" rx="2" fill="white" stroke="#e5e7eb" stroke-width="0.8"/>
+
+            <!-- Liquid in erlenmeyer (drawn first, behind glass walls) -->
+            <path id="erlLiquid" d="M79,230 L38,290 Q32,305 48,308 L172,308 Q188,305 182,290 L141,230 Q110,225 79,230 Z" fill="url(#erlLiquidGrad)"/>
+
+            <!-- Erlenmeyer flask (glass walls on top of liquid) -->
+            <path d="M82,195 L82,225 L38,290 Q32,305 48,308 L172,308 Q188,305 182,290 L138,225 L138,195" fill="none" stroke="#b0b8c4" stroke-width="2" stroke-linejoin="round" filter="url(#glassShadow)"/>
+            <line x1="76" y1="195" x2="144" y2="195" stroke="#b0b8c4" stroke-width="2" stroke-linecap="round"/>
+            <!-- Glass shine -->
+            <line x1="52" y1="265" x2="62" y2="240" stroke="white" stroke-width="2" stroke-linecap="round" opacity="0.4"/>
+            <!-- Meniscus highlight on liquid surface -->
+            <path d="M79,230 Q110,225 141,230" fill="none" stroke="rgba(255,255,255,0.3)" stroke-width="1.5"/>
+          </svg>
+        </div>
+        <div class="sim-color-label" id="simColorLabel" style="background:#fce7f3;color:#881337;">
+          Roig vi &mdash; Zn<sup>2+</sup> lliure amb NET
+        </div>
+      </div>
+      <div>
+        <div class="curve-container">
+          <canvas id="titrationCurve" height="280"></canvas>
+          <div class="curve-legend">
+            <div class="curve-legend-item"><div class="curve-legend-dot" style="background:var(--accent)"></div><span>pZn vs V(EDTA)</span></div>
+            <div class="curve-legend-item"><div class="curve-legend-dot" style="background:#dc2626"></div><span>Punt d'equivalència</span></div>
+            <div class="curve-legend-item"><div class="curve-legend-dot" style="background:#2563eb"></div><span>Posició actual</span></div>
+          </div>
+        </div>
+        <div class="sim-info-panel mt-1" id="simInfoPanel">
+          <h4>Estat actual</h4>
+          <p id="simInfoText">Desplaça el control per començar la valoració. La dissolució conté Zn<sup>2+</sup> lliure amb tampó pH 10 i indicador NET.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CALCULATIONS ═══ -->
+<section class="tab-panel" id="panel-calculations">
+  <div class="card">
+    <div class="card-title">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M8 6h8M8 10h8M8 14h5"/></svg>
+      Càlculs previs (entrevista)
+    </div>
+    <div class="calc-step">
+      <div class="calc-label">Pregunta 1 &mdash; Massa a pesar</div>
+      <p>Volem gastar ~20 mL d'EDTA ~0,1 M. Quant Zn necessitem?</p>
+      $$n_{\text{Zn}} = 0{,}020\text{ L} \times 0{,}10\text{ mol/L} = 2{,}0 \times 10^{-3}\text{ mol}$$
+      $$m_{\text{Zn}} = 2{,}0 \times 10^{-3}\text{ mol} \times 65{,}38\text{ g/mol} = 0{,}131\text{ g}$$
+      <p class="text-muted text-sm">Rang del guió: 0,12 &ndash; 0,14 g &check;</p>
+    </div>
+    <div class="calc-step">
+      <div class="calc-label">Pregunta 2 &mdash; Volum esperat</div>
+      <p>Si peso 0,1305 g de Zn, quant EDTA ~0,1 M gastare?</p>
+      $$V = \frac{0{,}1305}{65{,}38 \times 0{,}10} = 0{,}01996\text{ L} \approx 20{,}0\text{ mL}$$
+      <p class="text-muted text-sm">Cap a la bureta de 25 mL &check;</p>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-title">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+      Càlcul de la concentració
+    </div>
+    <div class="calc-step">
+      <div class="calc-label">Fórmula general</div>
+      $$C(\text{EDTA}) = \frac{m_{\text{Zn}}}{M_{\text{Zn}} \times V_{\text{EDTA}}\text{ (L)}}$$
+    </div>
+    <div class="calc-step">
+      <div class="calc-label">Assaig 1</div>
+      <p>$m = 0{,}1305\text{ g}$, $V = 19{,}85\text{ mL}$</p>
+      $$C = \frac{0{,}1305}{65{,}38 \times 0{,}01985} = 0{,}1006\text{ mol/L}$$
+    </div>
+    <div class="calc-step">
+      <div class="calc-label">Assaig 2</div>
+      <p>$m = 0{,}1287\text{ g}$, $V = 19{,}62\text{ mL}$</p>
+      $$C = \frac{0{,}1287}{65{,}38 \times 0{,}01962} = 0{,}1003\text{ mol/L}$$
+    </div>
+    <div class="calc-step">
+      <div class="calc-label">Assaig 3</div>
+      <p>$m = 0{,}1318\text{ g}$, $V = 20{,}17\text{ mL}$</p>
+      $$C = \frac{0{,}1318}{65{,}38 \times 0{,}02017} = 0{,}1000\text{ mol/L}$$
+    </div>
+    <div class="calc-step">
+      <div class="calc-label">Resultat final</div>
+      $$\bar{C} = 0{,}1003\text{ mol/L} \qquad s = 0{,}0003 \qquad \text{RSD} = 0{,}30\%$$
+      <div class="alert alert-success mt-1">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="9"/></svg>
+        <div><strong>RSD = 0,30% &lt; 0,5%</strong> &mdash; COMPLEIX el criteri de qualitat</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CHECKLIST ═══ -->
+<section class="tab-panel" id="panel-checklist">
+  <div class="card">
+    <div class="card-title">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
+      Llista de comprovació
+    </div>
+    <p class="text-muted text-sm mb-1">Fes clic a cada element per marcar-lo</p>
+    <div id="checklistContainer"></div>
+  </div>
+  <div class="card">
+    <div class="card-title">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><path d="M12 9v4M12 17h.01"/></svg>
+      Errors freqüents
+    </div>
+    <!-- Desktop table -->
+    <div class="errors-table-wrap" style="overflow-x:auto">
+    <table class="errors-table">
+      <thead><tr><th>Error</th><th>Conseqüència</th><th>Correcció</th></tr></thead>
+      <tbody>
+        <tr><td>Zn no dissolt completament</td><td>Menys Zn<sup>2+</sup> disponible &rarr; C(EDTA) <strong>alta</strong></td><td>"Mireu el fons. Granets? Afegiu més HCl."</td></tr>
+        <tr><td>Excés de NaOH (zincat)</td><td>Terbolesa desapareix; menys Zn<sup>2+</sup> &rarr; C(EDTA) <strong>alta</strong></td><td>"Afegiu H<sub>2</sub>SO<sub>4</sub> fins que torni la terbolesa."</td></tr>
+        <tr><td>Excés de NET</td><td>Viratge difus; NET consumeix EDTA &rarr; C(EDTA) <strong>baixa</strong></td><td>"Només una punta d'espàtula."</td></tr>
+        <tr><td>Sense tampó pH 10</td><td>NET no funciona; colors incorrectes</td><td>"Heu afegit el tampó?"</td></tr>
+        <tr><td>Parar al violeta</td><td>Infravalorar; C(EDTA) <strong>baixa</strong></td><td>"Violeta NO és blau. Continueu gota a gota."</td></tr>
+        <tr><td>Bombolles a la bureta</td><td>Volum aparent major que el real</td><td>"Comproveu la bureta. Raig ràpid."</td></tr>
+      </tbody>
+    </table>
+    </div>
+    <!-- Mobile stacked cards -->
+    <div class="error-cards" id="errorCards"></div>
+  </div>
+</section>
+
+</div>
+
+<script>
+// ─── TABS ───
+document.querySelectorAll('.tab-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById('panel-' + btn.dataset.tab).classList.add('active');
+    if (btn.dataset.tab === 'simulator') requestAnimationFrame(drawCurve);
+  });
+});
+
+// ─── ERROR CARDS FOR MOBILE ───
+const errData = [
+  { err: 'Zn no dissolt completament', cons: 'Menys Zn²⁺ disponible → C(EDTA) alta', fix: '"Mireu el fons. Granets? Afegiu més HCl."' },
+  { err: 'Excés de NaOH (zincat)', cons: 'Terbolesa desapareix; menys Zn²⁺ → C(EDTA) alta', fix: '"Afegiu H₂SO₄ fins que torni la terbolesa."' },
+  { err: 'Excés de NET', cons: 'Viratge difus; NET consumeix EDTA → C(EDTA) baixa', fix: '"Només una punta d\'espàtula."' },
+  { err: 'Sense tampó pH 10', cons: 'NET no funciona; colors incorrectes', fix: '"Heu afegit el tampó?"' },
+  { err: 'Parar al violeta', cons: 'Infravalorar; C(EDTA) baixa', fix: '"Violeta NO és blau. Continueu gota a gota."' },
+  { err: 'Bombolles a la bureta', cons: 'Volum aparent major que el real', fix: '"Comproveu la bureta. Raig ràpid."' },
+];
+const ecC = document.getElementById('errorCards');
+errData.forEach(e => {
+  const d = document.createElement('div');
+  d.className = 'error-card';
+  d.innerHTML = `<div class="error-card-header">${e.err}</div>
+    <div class="error-card-row"><span class="error-card-label">Efecte:</span><span>${e.cons}</span></div>
+    <div class="error-card-row"><span class="error-card-label">Solució:</span><span>${e.fix}</span></div>`;
+  ecC.appendChild(d);
+});
+
+// ─── SVG ICONS (detailed illustrations) ───
+const svgBalance = `<svg width="160" height="120" viewBox="0 0 160 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="balBase" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#e5e7eb"/><stop offset="100%" stop-color="#d1d5db"/></linearGradient>
+    <linearGradient id="balGlass" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#dbeafe" stop-opacity="0.3"/><stop offset="100%" stop-color="#dbeafe" stop-opacity="0.1"/></linearGradient>
+  </defs>
+  <!-- Base -->
+  <rect x="15" y="100" width="130" height="12" rx="4" fill="url(#balBase)" stroke="#b0b8c4" stroke-width="1"/>
+  <!-- Feet -->
+  <circle cx="30" cy="114" r="4" fill="#a8a29e" stroke="#78716c" stroke-width="1"/>
+  <circle cx="130" cy="114" r="4" fill="#a8a29e" stroke="#78716c" stroke-width="1"/>
+  <!-- Body -->
+  <rect x="25" y="28" width="110" height="72" rx="5" fill="#f3f4f6" stroke="#b0b8c4" stroke-width="1.5"/>
+  <!-- Glass doors -->
+  <rect x="28" y="31" width="22" height="66" rx="2" fill="url(#balGlass)" stroke="#c5cad4" stroke-width="0.8"/>
+  <rect x="110" y="31" width="22" height="66" rx="2" fill="url(#balGlass)" stroke="#c5cad4" stroke-width="0.8"/>
+  <!-- Door handles -->
+  <rect x="47" y="58" width="5" height="12" rx="2" fill="#d1d5db" stroke="#b0b8c4" stroke-width="0.5"/>
+  <rect x="108" y="58" width="5" height="12" rx="2" fill="#d1d5db" stroke="#b0b8c4" stroke-width="0.5"/>
+  <!-- Chamber -->
+  <rect x="52" y="31" width="56" height="52" fill="#fafafa" stroke="#e5e7eb" stroke-width="0.5"/>
+  <!-- Weighing pan -->
+  <rect x="58" y="68" width="44" height="3" rx="1" fill="#d1d5db" stroke="#b0b8c4" stroke-width="0.5"/>
+  <!-- Pan supports -->
+  <line x1="65" y1="68" x2="65" y2="62" stroke="#c5cad4" stroke-width="0.8"/>
+  <line x1="95" y1="68" x2="95" y2="62" stroke="#c5cad4" stroke-width="0.8"/>
+  <line x1="62" y1="62" x2="98" y2="62" stroke="#c5cad4" stroke-width="0.8"/>
+  <!-- Sample on pan -->
+  <ellipse cx="80" cy="66" rx="8" ry="2" fill="#9ca3af"/>
+  <!-- LCD Display -->
+  <rect x="54" y="84" width="52" height="14" rx="3" fill="#1e293b"/>
+  <text x="80" y="95" text-anchor="middle" font-size="9" fill="#4ade80" font-family="JetBrains Mono, Consolas, monospace" font-weight="500">0,1305</text>
+  <!-- Level bubble -->
+  <circle cx="80" cy="24" r="5" fill="none" stroke="#b0b8c4" stroke-width="1"/>
+  <circle cx="80" cy="24" r="2" fill="#4ade80" opacity="0.7"/>
+  <text x="80" y="12" text-anchor="middle" font-size="7" fill="#9ca3af" font-family="DM Sans, sans-serif">Balança analítica</text>
+</svg>`;
+
+const svgBeaker = `<svg width="100" height="105" viewBox="0 0 100 105" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="beakLiq" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#93c5fd" stop-opacity="0.25"/><stop offset="100%" stop-color="#60a5fa" stop-opacity="0.4"/></linearGradient>
+  </defs>
+  <!-- Beaker body -->
+  <path d="M18,12 L18,78 Q18,88 28,88 L72,88 Q82,88 82,78 L82,12" fill="none" stroke="#b0b8c4" stroke-width="2" stroke-linejoin="round"/>
+  <!-- Spout -->
+  <path d="M15,12 L18,12 L18,22 Q14,18 12,14 Z" fill="none" stroke="#b0b8c4" stroke-width="1.5" stroke-linejoin="round"/>
+  <!-- Thick rim -->
+  <line x1="12" y1="12" x2="85" y2="12" stroke="#b0b8c4" stroke-width="2.5" stroke-linecap="round"/>
+  <!-- Liquid fill -->
+  <rect x="19" y="40" width="62" height="47" fill="url(#beakLiq)" rx="0"/>
+  <!-- Graduation marks -->
+  <line x1="22" y1="30" x2="30" y2="30" stroke="#d1d5db" stroke-width="0.8"/>
+  <text x="33" y="33" font-size="5.5" fill="#b0b8c4" font-family="DM Sans, sans-serif">25</text>
+  <line x1="22" y1="40" x2="30" y2="40" stroke="#d1d5db" stroke-width="0.8"/>
+  <line x1="22" y1="50" x2="30" y2="50" stroke="#d1d5db" stroke-width="0.8"/>
+  <text x="33" y="53" font-size="5.5" fill="#b0b8c4" font-family="DM Sans, sans-serif">50</text>
+  <line x1="22" y1="60" x2="30" y2="60" stroke="#d1d5db" stroke-width="0.8"/>
+  <line x1="22" y1="70" x2="30" y2="70" stroke="#d1d5db" stroke-width="0.8"/>
+  <text x="33" y="73" font-size="5.5" fill="#b0b8c4" font-family="DM Sans, sans-serif">75</text>
+  <!-- Glass shine -->
+  <line x1="75" y1="20" x2="75" y2="75" stroke="white" stroke-width="1.5" stroke-linecap="round" opacity="0.35"/>
+  <text x="50" y="100" text-anchor="middle" font-size="7" fill="#9ca3af" font-family="DM Sans, sans-serif">Vas 100 mL</text>
+</svg>`;
+
+const svgErlenmeyer = `<svg width="110" height="110" viewBox="0 0 110 110" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="erlLiqG" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#881337" stop-opacity="0.15"/><stop offset="100%" stop-color="#881337" stop-opacity="0.3"/></linearGradient>
+    <clipPath id="erlClipI"><path d="M35,38 L12,80 Q6,92 20,95 L90,95 Q104,92 98,80 L75,38 Z"/></clipPath>
+  </defs>
+  <!-- White paper -->
+  <rect x="5" y="90" width="100" height="12" rx="2" fill="white" stroke="#e5e7eb" stroke-width="0.7"/>
+  <!-- Flask body -->
+  <path d="M40,12 L40,38 L12,80 Q6,92 20,95 L90,95 Q104,92 98,80 L70,38 L70,12" fill="none" stroke="#b0b8c4" stroke-width="2" stroke-linejoin="round"/>
+  <!-- Neck rim -->
+  <line x1="36" y1="12" x2="74" y2="12" stroke="#b0b8c4" stroke-width="2.5" stroke-linecap="round"/>
+  <!-- Liquid -->
+  <rect x="5" y="50" width="100" height="50" clip-path="url(#erlClipI)" fill="url(#erlLiqG)"/>
+  <!-- Meniscus line -->
+  <path d="M35,50 Q55,47 75,50" fill="none" stroke="#881337" stroke-width="0.8" opacity="0.3"/>
+  <!-- Glass shine -->
+  <line x1="22" y1="72" x2="28" y2="52" stroke="white" stroke-width="1.8" stroke-linecap="round" opacity="0.35"/>
+  <text x="55" y="108" text-anchor="middle" font-size="7" fill="#9ca3af" font-family="DM Sans, sans-serif">Erlenmeyer 300 mL</text>
+</svg>`;
+
+const svgBurette = `<svg width="65" height="155" viewBox="0 0 65 155" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="burGlass" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#d4d8de"/><stop offset="35%" stop-color="#eef0f3"/><stop offset="65%" stop-color="#eef0f3"/><stop offset="100%" stop-color="#d4d8de"/></linearGradient>
+    <linearGradient id="burLiq" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#0d6b5e" stop-opacity="0.35"/><stop offset="100%" stop-color="#0d6b5e" stop-opacity="0.55"/></linearGradient>
+  </defs>
+  <!-- Top cap -->
+  <rect x="22" y="4" width="16" height="6" rx="2" fill="#d4d8de" stroke="#b0b8c4" stroke-width="0.8"/>
+  <!-- Tube -->
+  <rect x="26" y="10" width="8" height="105" fill="url(#burGlass)" stroke="#b0b8c4" stroke-width="1.2" rx="1"/>
+  <!-- Liquid -->
+  <rect x="27" y="10" width="6" height="105" fill="url(#burLiq)" rx="0.5"/>
+  <!-- Graduation marks -->
+  <line x1="34" y1="10" x2="40" y2="10" stroke="#9ca3af" stroke-width="0.7"/>
+  <text x="43" y="13" font-size="5.5" fill="#9ca3af" font-family="DM Sans, sans-serif">0</text>
+  <line x1="34" y1="31" x2="38" y2="31" stroke="#c5cad4" stroke-width="0.5"/>
+  <line x1="34" y1="52" x2="40" y2="52" stroke="#9ca3af" stroke-width="0.7"/>
+  <text x="43" y="55" font-size="5.5" fill="#9ca3af" font-family="DM Sans, sans-serif">10</text>
+  <line x1="34" y1="73" x2="38" y2="73" stroke="#c5cad4" stroke-width="0.5"/>
+  <line x1="34" y1="94" x2="40" y2="94" stroke="#9ca3af" stroke-width="0.7"/>
+  <text x="43" y="97" font-size="5.5" fill="#9ca3af" font-family="DM Sans, sans-serif">20</text>
+  <line x1="34" y1="115" x2="40" y2="115" stroke="#9ca3af" stroke-width="0.7"/>
+  <text x="43" y="118" font-size="5.5" fill="#9ca3af" font-family="DM Sans, sans-serif">25</text>
+  <!-- Stopcock -->
+  <rect x="28" y="115" width="4" height="10" fill="#d4d8de" rx="1"/>
+  <circle cx="30" cy="120" r="4.5" fill="none" stroke="#9ca3af" stroke-width="1.2"/>
+  <rect x="34" y="118" width="8" height="4.5" rx="1.5" fill="#e7e5e4" stroke="#a8a29e" stroke-width="0.6"/>
+  <!-- Drip tip -->
+  <line x1="30" y1="125" x2="30" y2="140" stroke="#b0b8c4" stroke-width="1.2" stroke-linecap="round"/>
+  <text x="30" y="152" text-anchor="middle" font-size="7" fill="#9ca3af" font-family="DM Sans, sans-serif">Bureta 25 mL</text>
+</svg>`;
+
+// ─── PROCEDURE STEPS ───
+const steps = [
+  {
+    title: 'Pesar Zn metàl·lic',
+    body: `<div class="step-illust">${svgBalance}</div>
+    <p>Pesar per triplicat <strong>0,12 &ndash; 0,14 g</strong> de zinc granulat en tres erlenmeyers de 300 mL.</p>
+    <ul>
+      <li>Balança analítica (4 decimals)</li>
+      <li>Espàtula neta i seca</li>
+      <li>Anotar la massa EXACTA (p. ex. 0,1305 g)</li>
+    </ul>
+    <div class="alert alert-info"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg><div>El rang està calculat per gastar ~20 mL d'EDTA i que capi a la bureta de 25 mL.</div></div>`
+  },
+  {
+    title: 'Dissoldre amb HCl concentrat',
+    body: `<div class="step-illust">${svgBeaker}</div>
+    <p>Afegir <strong>2-3 mL d'HCl concentrat</strong> al zinc. Agitar suaument. El zinc es dissol amb efervescència (H<sub>2</sub>).</p>
+    <div class="alert alert-danger"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><path d="M12 9v4M12 17h.01"/></svg><div><strong>PRECAUCIÓ:</strong> L'H<sub>2</sub> és inflamable. No apropar flames. Si queden granets, afegir unes gotes més d'HCl.</div></div>
+    <p>Un cop dissolt, afegir <strong>40-50 mL d'aigua</strong> desionitzada.</p>`
+  },
+  {
+    title: 'Neutralitzar amb NaOH 10%',
+    body: `<p>Afegir NaOH al 10% <strong>gota a gota</strong> fins que aparegui <strong>terbolesa blanca permanent</strong> (Zn(OH)<sub>2</sub>).</p>
+    <ul>
+      <li>La terbolesa confirma que l'HCl s'ha consumit</li>
+      <li>Parar TAN AVIAT com la terbolesa persisteixi</li>
+    </ul>
+    <div class="alert alert-warning"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><path d="M12 9v4M12 17h.01"/></svg><div><strong>Perill d'excés:</strong> Si la terbolesa desapareix, s'ha format zincat [Zn(OH)<sub>4</sub>]<sup>2&minus;</sup> (el zinc és amfòter). Solució: afegir més H<sub>2</sub>SO<sub>4</sub>.</div></div>`
+  },
+  {
+    title: 'Redissoldre amb H\u2082SO\u2084',
+    body: `<p>Afegir exactament <strong>10 mL de H<sub>2</sub>SO<sub>4</sub> 2 mol/L</strong>. La dissolució ha de quedar <strong>transparent</strong>.</p>
+    <p>Això deixa el Zn<sup>2+</sup> en una dissolució gairebé neutra que el tampó podrà portar a pH 10.</p>`
+  },
+  {
+    title: 'Tampó pH 10 + indicador NET',
+    body: `<div class="step-illust">${svgErlenmeyer}</div>
+    <p>Afegir ~50 mL d'aigua, després:</p>
+    <ol>
+      <li><strong>10 mL de tampó pH 10</strong> (NH<sub>3</sub>/NH<sub>4</sub>Cl)</li>
+      <li><strong>Una punta d'espàtula de NET</strong> (molt poc!)</li>
+    </ol>
+    <p>La dissolució ha de quedar <strong style="color:#881337">roig vi</strong>. Indica que el Zn<sup>2+</sup> està unit al NET.</p>
+    <div class="alert alert-warning"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><path d="M12 9v4M12 17h.01"/></svg><div>Excés de NET = viratge difus + error positiu. Només una punta d'espàtula.</div></div>`
+  },
+  {
+    title: 'Condicionar i omplir bureta',
+    body: `<div class="step-illust">${svgBurette}</div>
+    <p>Bureta de 25 mL amb EDTA ~0,1 M:</p>
+    <ol>
+      <li>Esbandir <strong>3 vegades</strong> amb EDTA (5 mL cada cop)</li>
+      <li>Omplir amb embut. <strong>Retirar l'embut</strong></li>
+      <li><strong>Eliminar bombolles</strong> &mdash; raig ràpid per l'aixeta</li>
+      <li>Anotar volum inicial (dos decimals)</li>
+    </ol>
+    <div class="alert alert-danger"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><path d="M12 9v4M12 17h.01"/></svg><div>Les bombolles són l'error número 1 del primer dia. Revisar aixeta i punta des de diversos angles.</div></div>`
+  },
+  {
+    title: 'Valorar fins a blau pur',
+    body: `<p>Afegir EDTA amb agitació circular constant:</p>
+    <ul>
+      <li><strong>Lluny del PE:</strong> flux continu. El roig vi es manté</li>
+      <li><strong>Color violeta:</strong> prop del PE. Passar a gota a gota</li>
+      <li><strong>Blau pur persistent (&ge; 30 s):</strong> PUNT FINAL. Parar i anotar</li>
+    </ul>
+    <div class="color-swatch-row">
+      <div class="color-swatch"><div class="color-circle" style="background:#881337;width:36px;height:36px"></div><span>Roig vi</span></div>
+      <div style="align-self:center;color:var(--muted)">&rarr;</div>
+      <div class="color-swatch"><div class="color-circle" style="background:#6d28d9;width:36px;height:36px"></div><span>Violeta</span></div>
+      <div style="align-self:center;color:var(--muted)">&rarr;</div>
+      <div class="color-swatch"><div class="color-circle" style="background:#2563eb;width:36px;height:36px"></div><span>Blau pur</span></div>
+    </div>`
+  },
+  {
+    title: 'Repetir i calcular',
+    body: `<p>Repetir per als tres erlenmeyers. Calcular:</p>
+    <div class="calc-step">
+      <div class="calc-label">Fórmula</div>
+      $$C(\\text{EDTA}) = \\frac{m_{\\text{Zn}}}{M_{\\text{Zn}} \\times V_{\\text{EDTA}}\\text{ (L)}}$$
+    </div>
+    <ul>
+      <li>Mitjana dels 3 assaigs</li>
+      <li>Desviació estàndard ($s$)</li>
+      <li>RSD &lt; 0,5% per acceptar</li>
+    </ul>
+    <div class="alert alert-success"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="9"/></svg><div>Valors esperats: C(EDTA) entre 0,095 i 0,105 mol/L</div></div>`
+  }
+];
+
+const stepNav = document.getElementById('stepNav');
+const stepsContainer = document.getElementById('stepsContainer');
+let currentStep = 0;
+
+function renderSteps() {
+  stepNav.innerHTML = '';
+  stepsContainer.innerHTML = '';
+  steps.forEach((s, i) => {
+    if (i > 0) { const c = document.createElement('div'); c.className = 'step-connector' + (i <= currentStep ? ' done' : ''); stepNav.appendChild(c); }
+    const d = document.createElement('button');
+    d.className = 'step-dot' + (i === currentStep ? ' active' : i < currentStep ? ' done' : '');
+    d.textContent = i + 1;
+    d.addEventListener('click', () => goToStep(i));
+    stepNav.appendChild(d);
+
+    const div = document.createElement('div');
+    div.className = 'step-content' + (i === currentStep ? ' active' : '');
+    div.innerHTML = `<div class="step-header"><div class="step-number">${i+1}</div><div class="step-title">${s.title}</div></div>
+      <div class="step-body">${s.body}</div>
+      <div class="step-buttons">
+        ${i > 0 ? `<button class="btn btn-secondary" onclick="goToStep(${i-1})"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg> Anterior</button>` : ''}
+        ${i < steps.length-1 ? `<button class="btn btn-primary" onclick="goToStep(${i+1})">Següent <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>` : ''}
+      </div>`;
+    stepsContainer.appendChild(div);
+  });
+  document.getElementById('stepProgress').style.width = ((currentStep+1)/steps.length*100)+'%';
+  if (typeof MathJax !== 'undefined' && MathJax.typesetPromise) MathJax.typesetPromise();
+}
+function goToStep(n) { currentStep = n; renderSteps(); }
+renderSteps();
+
+// ─── CHECKLIST ───
+const clItems = [
+  'Zinc completament dissolt (sense granets al fons)',
+  'Neutralització amb NaOH: terbolesa blanca persistent',
+  'Redissolució amb H\u2082SO\u2084: dissolució transparent',
+  'Tampó pH 10: exactament 10 mL afegits',
+  'NET: només una punta d\'espàtula (sense excés)',
+  'Color abans de valorar: roig vi',
+  'Bureta condicionada (3 esbandides amb EDTA)',
+  'Bombolles eliminades de la bureta',
+  'Paper blanc sota l\'erlenmeyer',
+  'Punt final: blau pur persistent \u2265 30 s (no violeta)',
+  'Volum anotat immediatament amb 2 decimals'
+];
+const clC = document.getElementById('checklistContainer');
+clItems.forEach(item => {
+  const d = document.createElement('div');
+  d.className = 'checklist-item';
+  d.innerHTML = `<div class="check-box"><svg class="check-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3"><path d="M5 13l4 4L19 7"/></svg></div><div>${item}</div>`;
+  d.addEventListener('click', () => d.classList.toggle('checked'));
+  clC.appendChild(d);
+});
+
+// ═══════════════════════════════════════════════
+// ─── TITRATION SIMULATOR (corrected curve) ───
+// ═══════════════════════════════════════════════
+const slider = document.getElementById('simSlider');
+const volDisplay = document.getElementById('simVolume');
+const erlLiquid = document.getElementById('erlLiquid');
+const buretteLevel = document.getElementById('buretteLevel');
+const buretteMeniscus = document.getElementById('buretteMeniscus');
+const erlLiqStop1 = document.getElementById('erlLiqStop1');
+const erlLiqStop2 = document.getElementById('erlLiqStop2');
+const dropAnim = document.getElementById('dropAnim');
+const colorLabel = document.getElementById('simColorLabel');
+const infoText = document.getElementById('simInfoText');
+
+// Chemistry constants
+const nZn = 0.001996;     // mol Zn (from 0.1305 g / 65.38)
+const CEDTA = 0.1;        // mol/L
+const V0 = 0.150;         // L initial volume
+const Veq_mL = nZn / CEDTA * 1000;  // ~19.96 mL
+// Conditional formation constant Kf'(ZnY) at pH 10
+// log Kf(ZnY) = 16.50; alpha_Y4- at pH 10 ≈ 0.36 → log alpha ≈ -0.45
+// log Kf' = 16.50 - 0.45 = 16.05
+const logKfPrime = 16.05;
+const KfPrime = Math.pow(10, logKfPrime);
+
+/**
+ * Compute pZn = -log[Zn²⁺] using exact quadratic solution.
+ * Equilibrium: Zn²⁺ + Y⁴⁻ ⇌ ZnY²⁻, Kf' = [ZnY]/([Zn][Y])
+ * Mass balance: CZn = [Zn] + [ZnY], CY = [Y] + [ZnY]
+ * Quadratic: Kf'·[Zn]² + (Kf'·(CY-CZn) + 1)·[Zn] - CZn = 0
+ */
+function pZn(v_slider) {
+  const vedta_L = v_slider / 100000;  // slider units → L
+  const nedta = CEDTA * vedta_L;
+  const Vtot = V0 + vedta_L;
+  const CZn = nZn / Vtot;
+  const CY = nedta / Vtot;
+
+  const a = KfPrime;
+  const b = KfPrime * (CY - CZn) + 1;
+  const c_coef = -CZn;
+  const disc = b * b - 4 * a * c_coef; // always > 0
+
+  let znFree;
+  if (b >= 0) {
+    // Numerically stable for b ≥ 0 (at/after equivalence)
+    znFree = -2 * c_coef / (b + Math.sqrt(disc));
+  } else {
+    // Numerically stable for b < 0 (before equivalence)
+    znFree = (-b + Math.sqrt(disc)) / (2 * a);
+  }
+  return -Math.log10(Math.max(znFree, 1e-20));
+}
+
+function getColor(v) {
+  const ratio = (v / 100) / Veq_mL;
+  if (ratio < 0.88) return { bg: '#881337', fg: '#881337', label: 'Roig vi \u2014 Zn\u00B2\u207A lliure amb NET', labelBg: '#fce7f3' };
+  if (ratio < 0.96) {
+    const t = (ratio - 0.88) / 0.08;
+    const r = lerp(136, 109, t), g = lerp(19, 40, t), b2 = lerp(55, 217, t);
+    return { bg: `rgb(${r},${g},${b2})`, fg: '#6d28d9', label: 'Violeta \u2014 Prop del PE, gota a gota', labelBg: '#f3e8ff' };
+  }
+  if (ratio < 1.0) {
+    const t = (ratio - 0.96) / 0.04;
+    const r = lerp(109, 37, t), g = lerp(40, 99, t), b2 = lerp(217, 235, t);
+    return { bg: `rgb(${r},${g},${b2})`, fg: '#2563eb', label: 'Violeta-blau \u2014 Gairebé al PE', labelBg: '#ede9fe' };
+  }
+  return { bg: '#2563eb', fg: '#2563eb', label: 'BLAU PUR \u2014 PUNT FINAL', labelBg: '#dbeafe' };
+}
+function lerp(a, b, t) { return Math.round(a + (b - a) * t); }
+
+function getInfoText(v) {
+  const vol = (v/100).toFixed(2).replace('.',',');
+  const ratio = (v/100) / Veq_mL;
+  if (v === 0) return "Desplaça el control per començar la valoració. La dissolució conté Zn<sup>2+</sup> lliure amb tampó pH 10 i indicador NET.";
+  if (ratio < 0.50) return `<strong>V = ${vol} mL</strong> \u2014 Lluny del PE. L'EDTA va complexant Zn<sup>2+</sup>, però n'hi ha molt d'excés. Color roig vi estable. Flux continu.`;
+  if (ratio < 0.88) return `<strong>V = ${vol} mL</strong> \u2014 El Zn<sup>2+</sup> lliure disminueix. Roig vi encara. Flux continu.`;
+  if (ratio < 0.96) return `<strong>V = ${vol} mL</strong> \u2014 <strong>Zona de transició.</strong> Queda poc Zn<sup>2+</sup> lliure. El color vira a violeta. Passar a <strong>gota a gota</strong>.`;
+  if (ratio < 1.0) return `<strong>V = ${vol} mL</strong> \u2014 <strong>Molt prop del PE.</strong> El violeta es torna blavós. Cada gota compta. Considerar <strong>mitja gota</strong>.`;
+  if (ratio < 1.03) return `<strong>V = ${vol} mL</strong> \u2014 <strong>PUNT FINAL.</strong> Blau pur persistent. Tot el Zn<sup>2+</sup> està complexat. El NET queda lliure (blau a pH 10). <strong>PARAR i ANOTAR.</strong>`;
+  return `<strong>V = ${vol} mL</strong> \u2014 <strong>SOBREVALORAT.</strong> Ja heu passat del punt final. L'excés d'EDTA no canvia el color, però el resultat serà incorrecte.`;
+}
+
+function drawCurve() {
+  const canvas = document.getElementById('titrationCurve');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  const dpr = window.devicePixelRatio || 1;
+  const rect = canvas.getBoundingClientRect();
+  canvas.width = rect.width * dpr;
+  canvas.height = rect.height * dpr;
+  ctx.scale(dpr, dpr);
+  const W = rect.width, H = rect.height;
+  const pad = { t: 20, r: 15, b: 42, l: 45 };
+  const pw = W - pad.l - pad.r, ph = H - pad.t - pad.b;
+
+  ctx.clearRect(0, 0, W, H);
+
+  const pZnMin = 0, pZnMax = 16;
+  const VMax = 25;
+
+  // Grid
+  ctx.strokeStyle = '#e5e7eb'; ctx.lineWidth = 0.8;
+  for (let i = 0; i <= 8; i++) {
+    const y = pad.t + (i / 8) * ph;
+    ctx.beginPath(); ctx.moveTo(pad.l, y); ctx.lineTo(pad.l + pw, y); ctx.stroke();
+  }
+  for (let i = 0; i <= 5; i++) {
+    const x = pad.l + (i / 5) * pw;
+    ctx.beginPath(); ctx.moveTo(x, pad.t); ctx.lineTo(x, pad.t + ph); ctx.stroke();
+  }
+
+  // Axes
+  ctx.strokeStyle = '#9ca3af'; ctx.lineWidth = 1.3;
+  ctx.beginPath(); ctx.moveTo(pad.l, pad.t); ctx.lineTo(pad.l, pad.t + ph); ctx.lineTo(pad.l + pw, pad.t + ph); ctx.stroke();
+
+  // Labels
+  ctx.fillStyle = '#6b7280'; ctx.font = '11px DM Sans, sans-serif'; ctx.textAlign = 'center';
+  for (let i = 0; i <= 5; i++) {
+    ctx.fillText((i * VMax / 5).toFixed(0), pad.l + (i / 5) * pw, pad.t + ph + 16);
+  }
+  ctx.fillText('V(EDTA) / mL', pad.l + pw / 2, pad.t + ph + 35);
+
+  ctx.textAlign = 'right';
+  for (let i = 0; i <= 8; i++) {
+    const pz = pZnMax - (i / 8) * (pZnMax - pZnMin);
+    const y = pad.t + (i / 8) * ph;
+    ctx.fillText(pz.toFixed(0), pad.l - 6, y + 4);
+  }
+  ctx.save();
+  ctx.translate(12, pad.t + ph / 2);
+  ctx.rotate(-Math.PI / 2);
+  ctx.textAlign = 'center';
+  ctx.fillText('pZn', 0, 0);
+  ctx.restore();
+
+  // Equivalence point line
+  const xEq = pad.l + (Veq_mL / VMax) * pw;
+  ctx.strokeStyle = '#dc262650'; ctx.lineWidth = 1; ctx.setLineDash([4, 3]);
+  ctx.beginPath(); ctx.moveTo(xEq, pad.t); ctx.lineTo(xEq, pad.t + ph); ctx.stroke();
+  ctx.setLineDash([]);
+  ctx.fillStyle = '#dc2626'; ctx.font = '9px DM Sans, sans-serif'; ctx.textAlign = 'center';
+  ctx.fillText('V_eq', xEq, pad.t - 4);
+
+  // Color regions (background bands)
+  const xEq88 = pad.l + (Veq_mL * 0.88 / VMax) * pw;
+  const xEq100 = pad.l + (Veq_mL / VMax) * pw;
+  ctx.fillStyle = 'rgba(136,19,55,0.04)';
+  ctx.fillRect(pad.l, pad.t, xEq88 - pad.l, ph);
+  ctx.fillStyle = 'rgba(109,40,217,0.04)';
+  ctx.fillRect(xEq88, pad.t, xEq100 - xEq88, ph);
+  ctx.fillStyle = 'rgba(37,99,235,0.04)';
+  ctx.fillRect(xEq100, pad.t, pad.l + pw - xEq100, ph);
+
+  // Titration curve — draw only up to current volume (progressive reveal)
+  const cv = parseInt(slider.value);
+
+  // Ghost curve (full range, very faint) as reference
+  ctx.strokeStyle = 'rgba(13,107,94,0.12)'; ctx.lineWidth = 1.5; ctx.setLineDash([3,3]); ctx.beginPath();
+  let firstG = true;
+  for (let vi = 0; vi <= 2500; vi += 5) {
+    const pz = pZn(vi);
+    const x = pad.l + ((vi / 100) / VMax) * pw;
+    const y = pad.t + ph - ((pz - pZnMin) / (pZnMax - pZnMin)) * ph;
+    const yc = Math.max(pad.t, Math.min(pad.t + ph, y));
+    if (firstG) { ctx.moveTo(x, yc); firstG = false; } else ctx.lineTo(x, yc);
+  }
+  ctx.stroke();
+  ctx.setLineDash([]);
+
+  // Active curve (0 → current volume, solid bold)
+  ctx.strokeStyle = '#0d6b5e'; ctx.lineWidth = 2.5; ctx.beginPath();
+  let first = true;
+  const vLimit = Math.max(cv, 1);
+  for (let vi = 0; vi <= vLimit; vi += 3) {
+    const pz = pZn(vi);
+    const x = pad.l + ((vi / 100) / VMax) * pw;
+    const y = pad.t + ph - ((pz - pZnMin) / (pZnMax - pZnMin)) * ph;
+    const yc = Math.max(pad.t, Math.min(pad.t + ph, y));
+    if (first) { ctx.moveTo(x, yc); first = false; } else ctx.lineTo(x, yc);
+  }
+  ctx.stroke();
+
+  // Current point
+  const cpz = pZn(cv);
+  const cx = pad.l + ((cv / 100) / VMax) * pw;
+  const cy = Math.max(pad.t, Math.min(pad.t + ph, pad.t + ph - ((cpz - pZnMin) / (pZnMax - pZnMin)) * ph));
+  ctx.fillStyle = '#2563eb';
+  ctx.beginPath(); ctx.arc(cx, cy, 5.5, 0, Math.PI * 2); ctx.fill();
+  ctx.fillStyle = 'white';
+  ctx.beginPath(); ctx.arc(cx, cy, 2.5, 0, Math.PI * 2); ctx.fill();
+
+  // pZn label at current point
+  ctx.fillStyle = '#1e40af'; ctx.font = 'bold 10px DM Sans, sans-serif'; ctx.textAlign = 'left';
+  ctx.fillText('pZn=' + cpz.toFixed(1), cx + 9, cy + 4);
+}
+
+function updateSim(v) {
+  const pct = (v / 2500) * 100;
+  slider.style.setProperty('--pct', pct + '%');
+  volDisplay.textContent = (v / 100).toFixed(2).replace('.', ',');
+  const c = getColor(v);
+  // Update erlenmeyer liquid color via gradient stops
+  erlLiqStop1.setAttribute('stop-color', c.bg);
+  erlLiqStop2.setAttribute('stop-color', c.bg);
+  colorLabel.innerHTML = c.label;
+  colorLabel.style.background = c.labelBg;
+  colorLabel.style.color = c.fg;
+  infoText.innerHTML = getInfoText(v);
+
+  // Update burette level (25 mL = full = height 120)
+  const usedFrac = (v / 100) / 25;
+  const levelH = Math.max(0, 120 * (1 - usedFrac));
+  const levelY = 24 + (120 - levelH);
+  buretteLevel.setAttribute('height', levelH);
+  buretteLevel.setAttribute('y', levelY);
+  buretteMeniscus.setAttribute('y1', levelY);
+  buretteMeniscus.setAttribute('y2', levelY);
+  buretteMeniscus.setAttribute('opacity', levelH > 0 ? '0.85' : '0');
+
+  drawCurve();
+}
+
+slider.addEventListener('input', () => {
+  const v = parseInt(slider.value);
+  animValue = v; // sync accumulator with manual slider drag
+  updateSim(v);
+  // Show drops when there's flow
+  if (v > 0 && v < 2500) {
+    dropAnim.setAttribute('opacity', '1');
+    dropAnim.classList.add('drop-falling');
+  } else {
+    dropAnim.setAttribute('opacity', '0');
+    dropAnim.classList.remove('drop-falling');
+  }
+});
+
+// ─── PLAY/PAUSE ANIMATION ───
+const playBtn = document.getElementById('playBtn');
+const playIcon = document.getElementById('playIcon');
+const pauseIcon = document.getElementById('pauseIcon');
+const speedLbl = document.getElementById('speedLabel');
+let isPlaying = false;
+let animFrame = null;
+let lastTime = 0;
+let animValue = 0; // floating-point accumulator for smooth animation
+
+function startPlay() {
+  isPlaying = true;
+  animValue = parseFloat(slider.value) || 0;
+  playBtn.classList.add('playing');
+  playIcon.style.display = 'none';
+  pauseIcon.style.display = 'block';
+  dropAnim.setAttribute('opacity', '1');
+  dropAnim.classList.add('drop-falling');
+  lastTime = performance.now();
+  animFrame = requestAnimationFrame(animStep);
+}
+
+function stopPlay() {
+  isPlaying = false;
+  playBtn.classList.remove('playing');
+  playIcon.style.display = 'block';
+  pauseIcon.style.display = 'none';
+  speedLbl.textContent = '\u25B6 Play';
+  dropAnim.setAttribute('opacity', '0');
+  dropAnim.classList.remove('drop-falling');
+  if (animFrame) cancelAnimationFrame(animFrame);
+}
+
+function animStep(now) {
+  if (!isPlaying) return;
+  const dt = Math.min((now - lastTime) / 1000, 0.1); // cap dt to avoid jumps
+  lastTime = now;
+
+  const ratio = (animValue / 100) / Veq_mL;
+
+  // Variable speed: fast far from PE, slow near PE
+  let speed;
+  if (ratio < 0.80) {
+    speed = 200;
+    speedLbl.textContent = 'Flux continu';
+  } else if (ratio < 0.92) {
+    speed = 80;
+    speedLbl.textContent = 'Reduint flux...';
+  } else if (ratio < 0.98) {
+    speed = 30;
+    speedLbl.textContent = 'Gota a gota';
+  } else if (ratio < 1.025) {
+    speed = 12;
+    speedLbl.textContent = 'Mitja gota!';
+  } else {
+    stopPlay();
+    speedLbl.textContent = 'PUNT FINAL';
+    return;
+  }
+
+  animValue = Math.min(animValue + speed * dt, 2050);
+  const rounded = Math.round(animValue);
+  slider.value = rounded;
+  updateSim(rounded);
+
+  if (animValue >= 2050) {
+    stopPlay();
+    speedLbl.textContent = 'PUNT FINAL';
+    return;
+  }
+
+  animFrame = requestAnimationFrame(animStep);
+}
+
+playBtn.addEventListener('click', () => {
+  if (isPlaying) {
+    stopPlay();
+  } else {
+    if (parseInt(slider.value) >= 2050) {
+      slider.value = 0;
+      animValue = 0;
+      updateSim(0);
+    }
+    startPlay();
+  }
+});
+
+// Initial draw
+const obs = new MutationObserver(() => {
+  if (document.getElementById('panel-simulator').classList.contains('active')) requestAnimationFrame(drawCurve);
+});
+obs.observe(document.getElementById('panel-simulator'), { attributes: true, attributeFilter: ['class'] });
+window.addEventListener('resize', () => {
+  if (document.getElementById('panel-simulator').classList.contains('active')) drawCurve();
+});
+</script>
+</body>
+</html>
